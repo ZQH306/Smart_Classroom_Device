@@ -22,6 +22,8 @@
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "usart.h"
+#include "led.h"
+#include "buzzer.h"
 
 /* USER CODE BEGIN 0 */
 static uint8_t cmd;  // 用于接收云端下发的控制命令
@@ -119,7 +121,6 @@ void HAL_UART_MspDeInit(UART_HandleTypeDef* uartHandle)
   /* USER CODE END USART2_MspDeInit 1 */
   }
 }
-
 /* USER CODE BEGIN 1 */
 void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
 {
@@ -128,22 +129,22 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
 		if(cmd == 'a')
 		{
 			// 打开 LED
-			HAL_GPIO_WritePin(GPIOC, LED0_Pin | LED1_Pin | LED2_Pin, GPIO_PIN_SET);
+			LED_SetAllOn();
 		}
 		else if(cmd == 'b')
 		{
 			// 关闭 LED
-			HAL_GPIO_WritePin(GPIOC, LED0_Pin | LED1_Pin | LED2_Pin, GPIO_PIN_RESET);
+			LED_SetAllOff();
 		}
 		else if(cmd == 'c')
 		{
 			// 报警
-			HAL_GPIO_WritePin(BUZZER_GPIO_Port, BUZZER_Pin, GPIO_PIN_SET);		
+			Buzzer_On();		
 		}
 		else if(cmd == 'd')
 		{
 			// 静音
-			HAL_GPIO_WritePin(BUZZER_GPIO_Port, BUZZER_Pin, GPIO_PIN_RESET);				
+			Buzzer_Off();				
 		}
 		else if(cmd == 'e')
 		{

@@ -22,7 +22,9 @@
 #include "gpio.h"
 
 /* USER CODE BEGIN 0 */
-
+#include "led.h"
+#include "servo.h"
+#include "buzzer.h"
 /* USER CODE END 0 */
 
 /*----------------------------------------------------------------------------*/

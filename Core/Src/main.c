@@ -30,6 +30,8 @@
 #include "dht11.h"
 #include "light.h"
 #include "servo.h"
+#include "buzzer.h"
+#include "led.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -109,6 +111,7 @@ int main(void)
 	uint8_t humi = 0;
 	uint32_t light = 0;
 	uint8_t shock = 0;
+	uint8_t switch_state;
 	char upload_data[100];
 	
   while (1)
@@ -133,6 +136,19 @@ int main(void)
 		
 		// 其他传感器可以在这里扩展
 		// ......
+		
+		
+		// 上传各种设备状态数据
+	
+		// 获取蜂鸣器状态并上传
+		switch_state = HAL_GPIO_ReadPin(BUZZER_GPIO_Port, BUZZER_Pin);
+		sprintf(upload_data, "%s/sensor/buzzer %u\n", DEVICE_ID, switch_state);
+		HAL_UART_Transmit(&huart2, (uint8_t*)upload_data, strlen(upload_data), 1000);
+		
+		// 获取 LED 状态并上传
+		switch_state = HAL_GPIO_ReadPin( LED_GPIO_Port, LED_ALL_PINS);
+		sprintf(upload_data, "%s/sensor/led %u\n", DEVICE_ID, switch_state);
+		HAL_UART_Transmit(&huart2, (uint8_t*)upload_data, strlen(upload_data), 1000);
 		
 		// 采集周期为 2S
 		HAL_Delay(2000);

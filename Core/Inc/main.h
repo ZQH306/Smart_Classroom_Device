@@ -57,21 +57,13 @@ void Error_Handler(void);
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
-#define LED0_Pin GPIO_PIN_1
-#define LED0_GPIO_Port GPIOC
-#define LED1_Pin GPIO_PIN_2
-#define LED1_GPIO_Port GPIOC
-#define LED2_Pin GPIO_PIN_3
-#define LED2_GPIO_Port GPIOC
-#define LIGHT_Pin GPIO_PIN_4
-#define LIGHT_GPIO_Port GPIOA
+
+
 #define SHOCK_Pin GPIO_PIN_5
 #define SHOCK_GPIO_Port GPIOA
 #define SHOCK_EXTI_IRQn EXTI9_5_IRQn
-#define SERVO_Pin GPIO_PIN_0
-#define SERVO_GPIO_Port GPIOB
-#define BUZZER_Pin GPIO_PIN_7
-#define BUZZER_GPIO_Port GPIOC
+
+
 
 /* USER CODE BEGIN Private defines */
 
